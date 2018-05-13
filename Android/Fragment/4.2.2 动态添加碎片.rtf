@@ -1,0 +1,115 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1561\cocoasubrtf400
+{\fonttbl\f0\fnil\fcharset134 PingFangSC-Regular;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\margl1440\margr1440\vieww17600\viewh11400\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 \
+\'d4\'da
+\b \ul another_right_fragment.xml
+\b0 \ulnone \'d6\'d0:\
+\
+<LinearLayout xmlns:android=\'a1\'b0http://schemas.android.com/apk/res/android\'a1\'b1\
+	android:orientation=\'a1\'b0vertical\'a1\'b1\
+	android:background=\'a1\'b0#00ff00\'a1\'b1\
+	android:layout_width=\'a1\'b0match_parent\'a1\'b1\
+	android:layout_height=\'a1\'b0match_parent\'a1\'b1>\
+\
+	<TextView\
+		android:layout_width=\'a1\'b0wrap_content\'a1\'b1\
+		android:layout_height=\'a1\'b0wrap_content\'a1\'b1\
+		android:layout_gravity=\'a1\'b0center_horizontal\'a1\'b1\
+		android:textSize=\'a1\'b020sp\'a1\'b1\
+		android:text=\'a1\'b0This is right fragment\'a1\'b1\
+		/>\
+\
+</LinearLayout>\
+\
+\'d4\'da
+\b \ul AnotherRightFragmen
+\b0 t\ulnone \'d6\'d0:\
+\
+public class AnotherRightFragment extends Fragment \{\
+	\
+	@Override\
+	public void onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) \{\
+		View view = inflate(R.layout.another_right_fragment, container, false);\
+		return view;\
+	\} \
+\} \
+\
+\'d4\'da
+\b \ul activity_main.xml
+\b0 \ulnone \'d6\'d0:\
+\
+<LinearLayout xmlns:android=\'a1\'b0http://schemas.android.com/apk/res/android\'a1\'b1\
+	android:orientation=\'a1\'b0vertical\'a1\'b1\
+	android:layout_width=\'a1\'b0match_parent\'a1\'b1\
+	android:layout_height=\'a1\'b0match_parent\'a1\'b1>\
+\
+	<fragment\
+		android:id=\'a1\'b0@+id/left_fragment\'a1\'b1\
+		android:name=\'a1\'b0com.example.fragmenttest.LeftFragment\'a1\'b1\
+		android:layout_width=\'a1\'b00dp\'a1\'b1\
+		android:layout_height=\'a1\'b0match_parent\'a1\'b1\
+		android:layout_weight=\'a1\'b01\'a1\'b1 />\
+\
+
+\b 	<FrameLayout\
+		android:id=\'a1\'b0@+id/right_layout\'a1\'b1\
+		android:layout_width=\'a1\'b00dp\'a1\'b1\
+		android:layout_height=\'a1\'b0match_parent\'a1\'b1\
+		android:layout_weight=\'a1\'b01\'a1\'b1 />	
+\b0 \
+\
+</LinearLayout>\
+\
+\'d4\'da
+\b \ul MainActivity
+\b0 \ulnone \'d6\'d0:\
+\
+public class MainActivity extends AppCompatActivity 
+\b implements View.OnClickListener
+\b0  \{\
+\
+	@Override\
+	protected void onCreate(Bundle savedInstanceState) \{\
+		super.onCreate(savedInstanceState);\
+		setContentView(R.layout.activity_main);\
+
+\b 		Button button = (Button)findViewById(R.id.button);\
+		button.setOnClickListener(this);\
+		replaceFragment(new RightFragment());
+\b0 \
+	\}\
+\
+
+\b 	@Override\
+	public void onClick() \{\
+		switch (v.getId()) \{\
+			case R.id.button:\
+				replaceFragment(new AnotherRightFragment());					break;\
+			default:\
+				break;\
+		\}\
+	\}\
+\
+	private void replaceFragment(Fragment fragment) \{\
+		FragmentManager fragmentManager = getSupportFragmentManager();\
+		FragmentTransaction transaction = fragmentManager.beginTransaction();\
+		transaction.replace(R.id.right_layout, fragment);\
+		transaction.commit();\
+	\}
+\b0 \
+\}\
+\
+
+\b \ul \'b6\'af\'cc\'ac\'cc\'ed\'bc\'d3\'cb\'e9\'c6\'ac\'d6\'f7\'d2\'aa\'b7\'d6\'ce\'aa5\'b2\'bd:
+\b0 \ulnone \
+\
+(1) \'b4\'b4\'bd\'a8\'b4\'fd\'cc\'ed\'bc\'d3\'b5\'c4\'cb\'e9\'c6\'ac\'ca\'b5\'c0\'fd\
+(2) \'bb\'f1\'c8\'a1FragmentManager, \'d4\'da\'bb\'ee\'b6\'af\'d6\'d0\'bf\'c9\'d2\'d4\'d6\'b1\'bd\'d3\'cd\'a8\'b9\'fd\'b5\'f7\'d3\'c3getSupportFragmentManager()\'b7\'bd\'b7\'a8\'b5\'c3\'b5\'bd\
+(3) \'bf\'aa\'c6\'f4\'d2\'bb\'b8\'f6\'ca\'c2\'ce\'f1, \'cd\'a8\'b9\'fd\'b5\'f7\'d3\'c3beginTransaction()\'b7\'bd\'b7\'a8\'bf\'aa\'c6\'f4\
+(4) \'cf\'f2\'c8\'dd\'c6\'f7\'c4\'da\'cc\'ed\'bc\'d3\'bb\'f2\'cc\'e6\'bb\'bb\'cb\'e9\'c6\'ac, \'d2\'bb\'b0\'e3\'ca\'b9\'d3\'c3replace()\'b7\'bd\'b7\'a8\'ca\'b5\'cf\'d6, \'d0\'e8\'d2\'aa\'b4\'ab\'c8\'eb\'c8\'dd\'c6\'f7\'b5\'c4id\'ba\'cd\'b4\'fd\'cc\'ed\'bc\'d3\'b5\'c4\'cb\'e9\'c6\'ac\'ca\'b5\'c0\'fd\
+(5) \'cc\'e1\'bd\'bb\'ca\'c2\'ce\'f1, \'b5\'f7\'d3\'c3commit()\'b7\'bd\'b7\'a8\'c0\'b4\'cd\'ea\'b3\'c9}

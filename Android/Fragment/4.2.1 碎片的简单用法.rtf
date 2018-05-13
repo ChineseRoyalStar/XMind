@@ -1,0 +1,86 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1561\cocoasubrtf400
+{\fonttbl\f0\fnil\fcharset134 PingFangSC-Regular;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\margl1440\margr1440\vieww17600\viewh11400\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 \
+\'d4\'da\ul left_fragment.xml\ulnone \'d6\'d0:\
+\
+<LinearLayout xmlns:android=\'a1\'b0http://schemas.android.com/apk/res/android\'a1\'b1\
+	android:orientation=\'a1\'b0vertical\'a1\'b1\
+	android:layout_width=\'a1\'b0match_parent\'a1\'b1\
+	android:layout_height=\'a1\'b0match_parent\'a1\'b1>\
+\
+	<Button\
+		android:id=\'a1\'b0@+id/button\'a1\'b1\
+		android:layout_width=\'a1\'b0wrap_content\'a1\'b1\
+		android:layout_height=\'a1\'b0wrap_content\'a1\'b1\
+		android:text=\'a1\'b0Button\'a1\'b1\
+		/>\
+\
+</LinearLayout>\
+\
+\'d4\'da\ul right_fragment.xml\ulnone \'d6\'d0:\
+\
+<LinearLayout xmlns:android=\'a1\'b0http://schemas.android.com/apk/res/android\'a1\'b1\
+	android:orientation=\'a1\'b0vertical\'a1\'b1\
+	android:background=\'a1\'b0#00ff00\'a1\'b1\
+	android:layout_width=\'a1\'b0match_parent\'a1\'b1\
+	android:layout_height=\'a1\'b0match_parent\'a1\'b1>\
+\
+	<TextView\
+		android:layout_width=\'a1\'b0wrap_content\'a1\'b1\
+		android:layout_height=\'a1\'b0wrap_content\'a1\'b1\
+		android:layout_gravity=\'a1\'b0center_horizontal\'a1\'b1\
+		android:textSize=\'a1\'b020sp\'a1\'b1\
+		android:text=\'a1\'b0This is right fragment\'a1\'b1\
+		/>\
+\
+</LinearLayout>\
+\
+\'d4\'da\ul LeftFragment\ulnone \'d6\'d0:\
+\
+public class LeftFragment extends Fragment \{\
+	\
+	@Override\
+	public void onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) \{\
+		View view = inflate(R.layout.left_fragment, container, false);\
+		return view;\
+	\} \
+\} \
+\
+\'d4\'da\ul RightFragment\ulnone \'d6\'d0:\
+\
+public class RightFragment extends Fragment \{\
+	\
+	@Override\
+	public void onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) \{\
+		View view = inflate(R.layout.right_fragment, container, false);\
+		return view;\
+	\} \
+\} \
+\
+\'d4\'da\ul activity_main.xml\ulnone \'d6\'d0:\
+\
+<LinearLayout xmlns:android=\'a1\'b0http://schemas.android.com/apk/res/android\'a1\'b1\
+	android:orientation=\'a1\'b0vertical\'a1\'b1\
+	android:layout_width=\'a1\'b0match_parent\'a1\'b1\
+	android:layout_height=\'a1\'b0match_parent\'a1\'b1>\
+\
+	<fragment\
+		android:id=\'a1\'b0@+id/left_fragment\'a1\'b1\
+		android:name=\'a1\'b0com.example.fragmenttest.LeftFragment\'a1\'b1\
+		android:layout_width=\'a1\'b00dp\'a1\'b1\
+		android:layout_height=\'a1\'b0match_parent\'a1\'b1\
+		android:layout_weight=\'a1\'b01\'a1\'b1 />\
+\
+	<fragment\
+		android:id=\'a1\'b0@+id/right_fragment\'a1\'b1\
+		android:name=\'a1\'b0com.example.fragmenttest.RightFragment\'a1\'b1\
+		android:layout_width=\'a1\'b00dp\'a1\'b1\
+		android:layout_height=\'a1\'b0match_parent\'a1\'b1\
+		android:layout_weight=\'a1\'b01\'a1\'b1 />	\
+\
+</LinearLayout>}
