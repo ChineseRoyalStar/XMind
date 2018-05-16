@@ -20,11 +20,46 @@ public class MainActivity extends AppCompatActivity \{\
 	protected void onCreate(Bundle savedInstanceState) \{\
 		super.onCreate(savedInstanceState);\
 		setContentView(R.layout.activity_main);\
-		intentFilter.addAction(\'a1\'b0android.net.conn.CONNECTIVITY_CHANGE\'a1\'b1);\
+
+\b 		intentFilter.addAction(\'a1\'b0android.net.conn.CONNECTIVITY_CHANGE\'a1\'b1);\
 		networkChangeReceiver = new NetworkChangeReceiver();\
-		registerReceiver(networkChangeReceiver, intentFilter);\
+		registerReceiver(networkChangeReceiver, intentFilter);
+\b0 \
 	\}\
+\
+
+\b 	@Override\
+	protected void onDestroy() \{\
+		super.onDestroy();\
+		unregisterReceiver(networkChangeReceiver);\
+	\}\
+\
+	class NetworkChangeReceiver extends BroadcastReceiver \{\
+		\
+		@Override\
+		public void onReceive(Context context, Intent intent) \{\
+			ConnectivityManager connectionManager = (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);\
+			NetworkInfo networkInfo = connectionManager.getActiveNetworkInfo();\
+			if (networkInfo != null && networkInfo.isAvailable()) \{\
+				Toast.makeText(context, \'a1\'b0network is available\'a1\'b1, Toast.LENGTH_SHORT).show();\
+			\} else \{\
+				Toast.makeText(context, \'a1\'b0network is unavailable\'a1\'b1, Toast.LENGTH_SHORT).show();\
+			\}\
+		\}\
+	\}
+\b0 \
 \}\
 \
+\'d4\'da
+\b \ul AndroidManifest.xml
+\b0 \ulnone \'d6\'d0\
 \
+<manifest xmlns:android=\'a1\'b0http://schemas.android.com/apkk/res/android\'a1\'b1\
+	package=\'a1\'b0com.example.broadcasttest\'a1\'b1>\
+\
+	
+\b <uses-permission android:name=\'a1\'b0android.permission.ACCESS_NETWORK_STATE\'a1\'b1 />
+\b0 \
+	\'a1\'ad\
+</manifest>\
 }
