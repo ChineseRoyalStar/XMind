@@ -2,4 +2,4 @@
 XMind Docment Record
 
 1. Android
-2. SSM
+2. SSM(Spring+SpringMVC+MyBatis)
