@@ -1,0 +1,69 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1561\cocoasubrtf400
+{\fonttbl\f0\fnil\fcharset134 PingFangSC-Regular;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\margl1440\margr1440\vieww17600\viewh11400\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 \
+
+\b \ul activity_main.xml
+\b0 \ulnone \'d6\'d0:\
+\
+<LinearLayout xmlns:android=\'a1\'b0http://schemas.android.com/apk/res/android\'a1\'b1\
+	android:layout_width=\'a1\'b0match_parent\'a1\'b1\
+	android:layout_height=\'a1\'b0match_parent\'a1\'b1\
+	android:orientation=\'a1\'b0vertical\'a1\'b1 >\
+	\'a1\'ad\
+
+\b 	<Button\
+		android:id=\'a1\'b0@+id/query_data\'a1\'b1\
+		android:layout_width=\'a1\'b0match_parent\'a1\'b1\
+		android:layout_height=\'a1\'b0wrap_content\'a1\'b1\
+		android:text=\'a1\'b0Query data\'a1\'b1\
+		/>	
+\b0 \
+\
+</LinearLayout>\
+\
+
+\b \ul MainActivity
+\b0 \ulnone \'d6\'d0:\
+\
+public class MainActivity extends AppCompatActivity \{\
+\
+	private MyDatabaseHelper dbHelper;\
+\
+	@Override\
+	protected void onCreate(Bundle savedInstanceState) \{\
+		super.onCreate(savedInstanceState);\
+		setContentView(R.layout.main_activity);\
+		dbHelper = new MyDatabaseHelper(this, \'a1\'b0BookStore.db\'a1\'b1, null, 2);\
+		\'a1\'ad\
+
+\b 		Button queryButton = (Button) findViewById(R.id.query_data);\
+		queryButton.setOnClickListener(new View.OnClickListener() \{\
+			@Override\
+			public void onClick(View v) \{\
+				SQLiteDatabase db = dbHelper.getWriteableDatabase();\
+				// \'b2\'e9\'d1\'afBook\'b1\'ed\'d6\'d0\'cb\'f9\'d3\'d0\'b5\'c4\'ca\'fd\'be\'dd\
+				Cursor cursor = db.query(\'a1\'b0Book\'a1\'b1, null, null, null, null, null, null);\
+				if (cursor.moveToFirst()) \{\
+					do \{\
+						// \'b1\'e9\'c0\'faCursor\'b6\'d4\'cf\'f3, \'c8\'a1\'b3\'f6\'ca\'fd\'be\'dd\'b2\'a2\'b4\'f2\'d3\'a1\
+						String name = cursor.getString(cursor.getColumnIndex(\'a1\'b0name\'a1\'b1));						String author = cursor.getString(cursor.getColumnIndex(\'a1\'b0author\'a1\'b1));\
+						int pages = cursor.getInt(cursor.getColumnIndex(\'a1\'b0pages\'a1\'b1));\
+						double price = cursor.getDouble(cursor.getColumnIndex(\'a1\'b0price\'a1\'b1));\
+						Log.d(\'a1\'b0MainActivity\'a1\'b1, \'a1\'b0book name is \'a1\'b1 + \'a1\'b0name\'a1\'b1);\
+						Log.d(\'a1\'b0MainActivity\'a1\'b1, \'a1\'b0book author is \'a1\'b1 + \'a1\'b0author\'a1\'b1);\
+						Log.d(\'a1\'b0MainActivity\'a1\'b1, \'a1\'b0book pages is \'a1\'b1 + \'a1\'b0pages\'a1\'b1);\
+						Log.d(\'a1\'b0MainActivity\'a1\'b1, \'a1\'b0book price is \'a1\'b1 + \'a1\'b0price\'a1\'b1);\
+					\} while (cursor.moveToNext());\
+				\}\
+				cursor.close();\
+			\}\
+		\});
+\b0 \
+	\}\
+\}\
+}

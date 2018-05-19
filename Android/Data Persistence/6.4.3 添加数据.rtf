@@ -1,0 +1,68 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1561\cocoasubrtf400
+{\fonttbl\f0\fnil\fcharset134 PingFangSC-Regular;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\margl1440\margr1440\vieww17600\viewh11400\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 \
+
+\b \ul activity_main.xml
+\b0 \ulnone \'d6\'d0:\
+\
+<LinearLayout xmlns:android=\'a1\'b0http://schemas.android.com/apk/res/android\'a1\'b1\
+	android:layout_width=\'a1\'b0match_parent\'a1\'b1\
+	android:layout_height=\'a1\'b0match_parent\'a1\'b1\
+	android:orientation=\'a1\'b0vertical\'a1\'b1 >\
+	\'a1\'ad\
+
+\b 	<Button\
+		android:id=\'a1\'b0@+id/add_data\'a1\'b1\
+		android:layout_width=\'a1\'b0match_parent\'a1\'b1\
+		android:layout_height=\'a1\'b0wrap_content\'a1\'b1\
+		android:text=\'a1\'b0Add data\'a1\'b1\
+		/>	
+\b0 \
+\
+</LinearLayout>\
+\
+
+\b \ul MainActivity
+\b0 \ulnone \'d6\'d0:\
+\
+public class MainActivity extends AppCompatActivity \{\
+\
+	private MyDatabaseHelper dbHelper;\
+\
+	@Override\
+	protected void onCreate(Bundle savedInstanceState) \{\
+		super.onCreate(savedInstanceState);\
+		setContentView(R.layout.main_activity);\
+		dbHelper = new MyDatabaseHelper(this, \'a1\'b0BookStore.db\'a1\'b1, null, 2);\
+		\'a1\'ad\
+
+\b 		Button addData = (Button) findViewById(R.id.add_data);\
+		addData.setOnClickListener(new View.OnClickListener() \{\
+			@Override\
+			public void onClick(View v) \{\
+				SQLiteDatabase db = dbHelper.getWriteableDatabase();\
+				ContentValues values = new ContentValues();\
+				// \'bf\'aa\'ca\'bc\'d7\'e9\'d7\'b0\'b5\'da\'d2\'bb\'cc\'f5\'ca\'fd\'be\'dd\
+				values.put(\'a1\'b0name\'a1\'b1, \'a1\'b0The Da Vinci Code\'a1\'b1);\
+				values.put(\'a1\'b0author\'a1\'b1, \'a1\'b0Dan Brown\'a1\'b1);\
+				values.put(\'a1\'b0pages\'a1\'b1, 454);\
+				values.put(\'a1\'b0price\'a1\'b1, 16.96);\
+				db.insert(\'a1\'b0Book\'a1\'b1, null, values); // \'b2\'e5\'c8\'eb\'b5\'da\'b6\'fe\'cc\'f5\'ca\'fd\'be\'dd\
+				values.clear();\
+				// \'bf\'aa\'ca\'bc\'d7\'e9\'d7\'b0\'b5\'da\'b6\'fe\'cc\'f5\'ca\'fd\'be\'dd\
+				values.put(\'a1\'b0name\'a1\'b1, \'a1\'b0The Lost Symbol\'a1\'b0);\
+				values.put(\'a1\'b0author\'a1\'b1, \'a1\'b0Dan Brown\'a1\'b1);\
+				values.put(\'a1\'b0pages\'a1\'b1, 510);\
+				values.put(\'a1\'b0price\'a1\'b1, 19.95);\
+				db.insert(\'a1\'b0Book\'a1\'b1, null, values); // \'b2\'e5\'c8\'eb\'b5\'da\'b6\'fe\'cc\'f5\'ca\'fd\'be\'dd\
+			\}\
+		\});
+\b0 \
+	\}\
+\}\
+}
