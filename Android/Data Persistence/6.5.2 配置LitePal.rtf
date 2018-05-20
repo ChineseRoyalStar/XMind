@@ -1,0 +1,53 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1561\cocoasubrtf400
+{\fonttbl\f0\fnil\fcharset134 PingFangSC-Regular;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\margl1440\margr1440\vieww17600\viewh11400\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 \
+
+\b \ul app/build.gradle
+\b0 \ulnone \'d6\'d0:\
+\
+dependencies \{\
+	compile fileTree(dir: \'a1\'aelibs\'a1\'af, include: [\'a1\'ae*jar\'a1\'af])\
+	compile \'a1\'aecom.android.support:appcompat-v7:23.2.0\'a1\'af\
+	testCompile \'a1\'aejunit:junit:4.12\'a1\'af\
+	
+\b compile \'a1\'aeorg.litepal.android:core:1.4.1\'a1\'af
+\b0 \
+\}\
+\
+
+\b \ul litepal.xml
+\b0 \ulnone \'d6\'d0:\
+\
+<?xml version=\'a1\'b01.0\'a1\'b1 encoding=\'a1\'b0utf-8\'a1\'b1?>\
+<litepal>\
+	<dbname value=\'a1\'b0BookStore\'a1\'b1 ></dbname>\
+	\
+	<version value=\'a1\'b01\'a1\'b1 ></version>\
+\
+	<list>\
+	</list>\
+</litepal>\
+\
+
+\b \ul AndoridManifest.xml
+\b0 \ulnone \'d6\'d0:\
+\
+<mainifest xmlns:android=\'a1\'b0http://schemas.android.com/apk/res/android\'a1\'b1\
+	package=\'a1\'b0com.example.litepaltest\'a1\'b1>\
+	<application\
+		
+\b android:name=\'a1\'b0org.litepal.LitePalApplication\'a1\'b1
+\b0 \
+		android:allowBackup=\'a1\'b0true\'a1\'b1\
+		android:icon=\'a1\'b0@mipmap/ic_launcher\'a1\'b1\
+		android:label=\'a1\'b0@string/app_name\'a1\'b1\
+		android:supportsRtl=\'a1\'b0true\'a1\'b1\
+		android:theme=\'a1\'b0@style/AppTheme\'a1\'b1\
+		\'a1\'ad\
+	</application>\
+</mainfest>}

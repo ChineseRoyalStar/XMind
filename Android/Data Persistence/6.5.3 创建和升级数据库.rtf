@@ -1,0 +1,176 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1561\cocoasubrtf400
+{\fonttbl\f0\fnil\fcharset134 PingFangSC-Regular;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\margl1440\margr1440\vieww17600\viewh11400\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 \
+
+\b \ul Book.java
+\b0 \ulnone \'d6\'d0:\
+\
+public class Book \{\
+\
+	private int id;\
+	\
+	private String author;\
+\
+	private double price;\
+\
+	private int pages;\
+\
+	private String name;\
+\
+	public int getId() \{\
+		return id;\
+	\}\
+\
+	public void setId(int id) \{\
+		this.id = id;\
+	\}\
+\
+	public String getAuthor \{\
+		return author;\
+	\}\
+\
+	public setAuthor(String author) \{\
+		this.author = author;\
+	\}\
+\
+	public getPrice \{\
+		return price;\
+	\}\
+\
+	public setPrice(double price) \{\
+		this.price = price;\
+	\}\
+\
+	public int getPages \{\
+		return pages;\
+	\}\
+\
+	public void setPages(double pages) \{\
+		this.pages = pages;\
+	\}\
+\
+	public String name \{\
+		return name;\
+	\}\
+\
+	public void setName(String name) \{\
+		this.name = name;\
+	\}\
+\}\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\b \cf0 \ul \ulc0 litepal.xml
+\b0 \ulnone \'d6\'d0:\
+\
+<?xml version=\'a1\'b01.0\'a1\'b1 encoding=\'a1\'b0utf-8\'a1\'b1?>\
+<litepal>\
+	<dbname value=\'a1\'b0BookStore\'a1\'b1 ></dbname>\
+	\
+	<version value=\'a1\'b01\'a1\'b1 ></version>\
+\
+	<list>\
+		
+\b <mapping class=\'a1\'b0com.example.litepaltest.Book\'a1\'b1></mapping>\
+
+\b0 	</list>\
+</litepal>\
+\
+\
+
+\b \ul MainActivity.java
+\b0 \ulnone \'d6\'d0:\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+\cf0 public void MainActivity extends AppCompatActivity \{\
+\
+	@Override\
+	protected void onCreate(Bundle savedInstanceState) \{\
+		super.onCreate(savedInstanceState);\
+		setContentView(R.layout.activity_main);\
+
+\b 		Button createDatabase = (Button) findViewById(R.id.create_database);\
+		createDatabase.setOnClickListener(new View.OnClickListener() \{\
+			@Override\
+			public void onClick(View v) \{\
+				Litepal.getDatabase();\
+			\}\
+		\});
+\b0 \
+	\}\
+\}\
+\
+
+\fs28 \'b8\'fc\'d0\'c2\'ca\'fd\'be\'dd\'bf\'e2:
+\fs24 \
+\
+public class Book \{\
+\
+	\'a1\'ad\
+\
+	
+\b private String press;
+\b0 \
+\
+	\'a1\'ad\
+\
+
+\b 	public String getPress() \{\
+		return press;\
+	\}\
+\
+	public void getPress(String press) \{\
+		this.press = press;\
+	\}
+\b0 \
+\}\
+\
+public class Category \{\
+\
+	private int id;\
+\
+	private String categoryName;\
+\
+	private int categoryCode;\
+\
+	public void setId(int id) \{\
+		this.id = id;\
+	\}\
+\
+	public void setCategoryName(String categoryName) \{\
+		this.categoryName = category;\
+	\}\
+\
+	public void setCategoryCode(int categoryCode) \{\
+		this.categoryCode = categoryCode;\
+	\}\
+\}\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\b \cf0 \ul \ulc0 litepal.xml
+\b0 \ulnone \'d6\'d0:\
+\
+<?xml version=\'a1\'b01.0\'a1\'b1 encoding=\'a1\'b0utf-8\'a1\'b1?>\
+<litepal>\
+	<dbname value=\'a1\'b0BookStore\'a1\'b1 ></dbname>\
+	\
+	<version value=\'a1\'b0
+\b 2
+\b0 \'a1\'b1 ></version>\
+\
+	<list>\
+		<mapping class=\'a1\'b0com.example.litepaltest.Book\'a1\'b1></mapping>\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+\cf0 		
+\b <mapping class=\'a1\'b0com.example.litepaltest.Category\'a1\'b1></mapping>
+\b0 \
+	</list>\
+</litepal>\
+\
+}
