@@ -44,7 +44,6 @@
 \
 </manifest>\
 \
-\
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
 
 \b \cf0 \ul \ulc0 MainActivity.java
@@ -73,8 +72,7 @@ public void MainActivity extends AppCompatActivity \{\
 \
 
 \b 	private void call() \{\
-\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
-\cf0 		try \{\
+		try \{\
 			Intent intent = new Intent(Intent.ACTION_CALL);\
 			intent.setData(Uri.parse(\'a1\'b0tel:10086\'a1\'b1));\
 			startActivity(intent);\
@@ -88,7 +86,7 @@ public void MainActivity extends AppCompatActivity \{\
 		switch(requestCode) \{\
 			case 1:\
 				if (grantResults.length > 0 && grantResult[0] == PackageManager.PERMISSION_GRANTED) \{\
-					call()\
+					call();\
 				\} else \{\
 					Toast.makeText(this, \'a1\'b0You denied the permission\'a1\'b1, Toast.LENGTH_SHORT).show();\
 				\}\
