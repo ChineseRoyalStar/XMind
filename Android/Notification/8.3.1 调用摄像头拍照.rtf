@@ -1,0 +1,140 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1561\cocoasubrtf400
+{\fonttbl\f0\fnil\fcharset134 PingFangSC-Regular;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\margl1440\margr1440\vieww19660\viewh13300\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 \
+
+\b activity_main.xml:\
+\
+
+\b0 <L
+\b in
+\b0 earLayout android:xlmns=http://schemas.android.com/apk/res/android\
+	android:orientation=\'a1\'b0vertical\'a1\'b1\
+	android:layout_width=\'a1\'b0match_parent\'a1\'b1\
+	android:layout_height=\'a1\'b0match_parent\'a1\'b1 >\
+\
+	<Button\
+		android:id=\'a1\'b0@+id/take_photo\'a1\'b1\
+		android:layout_width=\'a1\'b0match_parent\'a1\'b1\
+		android:layout_height=\'a1\'b0wrap_content\'a1\'b1\
+		android:text=\'a1\'b0Take Photo\'a1\'b1 />\
+\
+	<ImageView\
+		android:id=\'a1\'b0@+id/picture\'a1\'b1\
+		android:layout_width=\'a1\'b0wrap_content\'a1\'b1\
+		android:layout_height=\'a1\'b0wrap_content\'a1\'b1\
+		android:layout_gravity=\'a1\'b0center_horizontal\'a1\'b1 />\
+\
+</LinearLayout>\
+\
+\
+
+\b MainActivity.java:\
+\
+
+\b0 public class MainActivity extends AppCompatActivity \{\
+\
+	public static final int TAKE_PHOTO = 1;\
+\
+	private ImageView picture;\
+\
+	private Uri imageUrl;\
+\
+	@Override\
+	protected void onCreate(Bundle savedInstanceState) \{\
+		super.onCreate(savedInstanceState);\
+		setContentView(R.layout.activity_main);\
+		Button takePhoto = (Button) findViewById(R.id.take_photo);\
+		picture = (ImageView) findViewById(R.id.picture);\
+		takePhoto.setOnClickListener(new View.OnClickListener() \{\
+			@Override\
+			public void onClick(View v) \{\
+				// \'b4\'b4\'bd\'a8File\'b6\'d4\'cf\'f3, \'d3\'c3\'d3\'da\'b4\'e6\'b4\'a2\'c5\'c4\'d5\'d5\'d6\'ae\'ba\'f3\'b5\'c4\'cd\'bc\'c6\'ac\
+				File outputImage = new File(getExternalCacheDir(), \'a1\'b0output_image.jpg\'a1\'b1);\
+				try \{\
+					if (outputImage.exists()) \{\
+						outputImage.delete();	\
+					\}\
+				\} catch(IOException e) \{\
+					e.printStackTrace();\
+				\}\
+				if (Build.VERSION.SDK_INT >= 24) \{\
+					imageUri = FileProvider.getUriForFile(MainActivity.this, \'a1\'b0com.example.cameraalbumtest.fileprovider\'a1\'b1, outputImage);\
+				\} else \{\
+					imageUrl = Uri.fromFile(outputImage);\
+				\}\
+				// \'c6\'f4\'b6\'af\'cf\'e0\'bb\'fa\'b3\'cc\'d0\'f2\
+				Intent intent = new Intent(\'a1\'b0android.media.action.IMAGE_CAPTURE\'a1\'b1);\
+				intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);\
+				startActivityForResult(intent, TAKE_PHOTO);\
+			\}\
+		\})\
+	\}\
+\
+	@Override\
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) \{\
+		switch(requestCode) \{\
+			case TAKE_PHOTO:\
+				if (resultCode == RESULT_OK) \{\
+					try \{\
+						// \'bd\'ab\'c5\'c4\'c9\'e3\'b5\'c4\'d5\'d5\'c6\'ac\'cf\'d4\'ca\'be\'b3\'f6\'c0\'b4\
+						Bitmap bitmap = BitmapFactory.decodeStream(getContentResolver().openInputStream(imageUri));\
+						picture.setImageBitmap(bitmap);\
+					\} catch (IOException e) \{\
+						e.printStackTrace();\
+					\}\
+				\}\
+				break;\
+			default: \
+				break;\
+		\}\
+	\}\
+\
+\}\
+\
+
+\b AndroidManifest.xml:\
+\
+
+\b0 <manifest xmlns:android=http://schemas.android.com/apk/res/android\
+	package=\'a1\'b0com.example.cameraalbumtest\'a1\'b1>\
+\
+	
+\b <uses-permission android:name=\'a1\'b0android.permission.WRITE_EXTERNAL_STORAGE\'a1\'b1 />
+\b0 \
+\
+	<application\
+		android:allowBackup=\'a1\'b0true\'a1\'b1\
+		android:icon=\'a1\'b0@mipmap/ic_launcher\'a1\'b1\
+		android:label=\'a1\'b0@string/app_name\'a1\'b1\
+		android:supportsRtl=\'a1\'b0true\'a1\'b1\
+		android:theme=\'a1\'b0@style/AppTheme\'a1\'b1\
+		\'a1\'ad\
+		<provider\
+			android:name=\'a1\'b0android.support.v4.content.FileProvider\'a1\'b1\
+			android:authorities=\'a1\'b0com.example.cameraalbumtest.fileprovider\'a1\'b1\
+			android:exported=\'a1\'b0false\'a1\'b1\
+			android:grantUriPermissions=\'a1\'b0true\'a1\'b1>\
+			<meta-data\
+				android:name=\'a1\'b0android.support.FILE_PROVIDER_PATHS\'a1\'b1\
+				android:resource=\'a1\'b0@xml/file_paths\'a1\'b1 />\
+		</provider>\
+	</application>\
+</manifest>\
+\
+\
+
+\b file_paths.xml:
+\b0 \
+\
+<?xml version=\'a1\'b01.0\'a1\'b1 encoding=\'a1\'b0utf-8\'a1\'b1>\
+<paths xmlns:android=\'a1\'b0http://schemas.android.com/apk/res/android\'a1\'b1>\
+	<external-path name=\'a1\'b0my_images\'a1\'b1 path=\'a1\'b1\'a1\'b1 />\
+</paths>\
+\
+\
+}
