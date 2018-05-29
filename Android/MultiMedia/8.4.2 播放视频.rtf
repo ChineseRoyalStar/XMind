@@ -1,0 +1,145 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1561\cocoasubrtf400
+{\fonttbl\f0\fnil\fcharset134 PingFangSC-Regular;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\margl1440\margr1440\vieww22340\viewh13600\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 \
+
+\b activity_main.xml:\
+\
+
+\b0 <L
+\b in
+\b0 earLayout android:xlmns=http://schemas.android.com/apk/res/android\
+	android:orientation=\'a1\'b0vertical\'a1\'b1\
+	android:layout_width=\'a1\'b0match_parent\'a1\'b1\
+	android:layout_height=\'a1\'b0match_parent\'a1\'b1 >\
+\
+	<LinearLayout\
+		android:layout_width=\'a1\'b0match_parent\'a1\'b1\
+		android:layout_height=\'a1\'b0wrap_content\'a1\'b1 >\
+		<Button\
+			android:id=\'a1\'b0@+id/play\'a1\'b1\
+			android:layout_width=\'a1\'b00dp\'a1\'b1\
+			android:layout_height=\'a1\'b0wrap_content\'a1\'b1\
+			android:weight=\'a1\'b01\'a1\'b1\
+			android:text=\'a1\'b0Play\'a1\'b1 />\
+\
+		<Button\
+			android:id=\'a1\'b0@+id/pause\'a1\'b1\
+			android:layout_width=\'a1\'b00dp\'a1\'b1\
+			android:layout_height=\'a1\'b0wrap_content\'a1\'b1\
+			android:weight=\'a1\'b01\'a1\'b1\
+			android:text=\'a1\'b0Pause\'a1\'b1 />\
+\
+		<Button\
+			android:id=\'a1\'b0@+id/replay\'a1\'b1\
+			android:layout_width=\'a1\'b00dp\'a1\'b1\
+			android:layout_height=\'a1\'b0wrap_content\'a1\'b1\
+			android:weight=\'a1\'b01\'a1\'b1\
+			android:text=\'a1\'b0Replay\'a1\'b1 />\
+\
+	</LinearLayout>\
+\
+	<ViewView\
+		android:id=\'a1\'b0@id/video_view\'a1\'b1\
+		android:layout_width=\'a1\'b0match_parent\'a1\'b1\
+		android:layout_height=\'a1\'b0wrap_content\'a1\'b1 />\
+\
+</LinearLayout>\
+\
+\
+
+\b MainActivity.java:\
+\
+
+\b0 public class MainActivity extends AppCompatActivity implements View.OnClickListener \{\
+\
+	private VideoView videoView;\
+\
+	@Override\
+	protected void onCreate(Bundle savedInstanceState) \{\
+		super.onCreate(savedInstanceState);\
+		setContentView(R.layout.activity_main);\
+		videoView = (Button) findViewById(R.id.video_view);\
+		Button play = (Button) findViewById(R.id.play);\
+		Button pause = (Button) findViewById(R.id.pause);\
+		Button replay = (Button) findViewById(R.id.replay);\
+		play.setOnClickListener(this);\
+		pause.setOnClickListener(this);\
+		replay.setOnClickListener(this);\
+		if (ContextCompat.checkSelfPermission(MainActivity.this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED ) \{\
+			ActivityCompat.requestPermissions(MainActivity.this, new String[] \{Manifest.permission.WRITE_EXTERNAL_STORAGE\}, 1);\
+		\} else \{\
+			initVideoPath(); // \'b3\'f5\'ca\'bc\'bb\'afVideoView\
+		\}\
+	\}\
+\
+	private void initVideoPath() \{\
+		File file = new File(Environment.getExternalStorageDirectory(), \'a1\'b0movie.mp4\'a1\'b1);\
+		videoView.setVideoPath(file.getPath()); // \'d6\'b8\'b6\'a8\'ca\'d3\'c6\'b5\'ce\'c4\'bc\'fe\'b5\'c4\'c2\'b7\'be\'b6\
+	\}\
+
+\b \
+
+\b0 	@Override\
+	public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) \{\
+		switch(requestCode) \{\
+			case 1:\
+				if (grantResults.length > 0 && grantResults[0] ==  PackageManager.PERMISSION_GRANTED) \{\
+					initVideoPath();\
+				\} else \{\
+					Toast.makeText(this, \'a1\'b0\'be\'dc\'be\'f8\'c8\'a8\'cf\'de\'bd\'ab\'ce\'de\'b7\'a8\'ca\'b9\'d3\'c3\'b3\'cc\'d0\'f2\'a1\'b1, Toast.LENGTH_SHORT).show();\
+					finish();\
+				\}\
+				break;\
+			default:\
+		\}\
+	\}\
+\
+	@Override\
+	public void onClick(View v) \{\
+		switch(v.getId()) \{\
+			case R.id.play:\
+				if (!videoView.isPlaying()) \{\
+					videoView.start();  // \'bf\'aa\'ca\'bc\'b2\'a5\'b7\'c5\
+				\}\
+				break;\
+			case R.id.pause:\
+				if (videoView.isPlaying()) \{\
+					videoView.pause(); // \'d4\'dd\'cd\'a3\'b2\'a5\'b7\'c5\
+				\}\
+				break;\
+			case R.id.replay:\
+				if (videoView.isPlaying()) \{\
+					videoView.resume(); // \'d6\'d8\'d0\'c2\'b2\'a5\'b7\'c5\
+				\}\
+				break;\
+			default:\
+				break;\
+		\}\
+	\}\
+	\
+	@Override\
+	protected void onDestroy() \{\
+		super.onDestroy();\
+		if (videoView != null) \{\
+			videoView.suspend();\
+		\}\
+	\}\
+\}\
+\
+
+\b AndroidManifest.xml:\
+\
+
+\b0 <manifest xmlns:android=http://schemas.android.com/apk/res/android\
+	package=\'a1\'b0com.example.playvideotest\'a1\'b1>\
+	
+\b <uses-permission android:name=\'a1\'b0android.permission.WRITE_EXTERNAL_STORAGE\'a1\'b1 />
+\b0 \
+	\'a1\'ad\
+</manifest>\
+}
