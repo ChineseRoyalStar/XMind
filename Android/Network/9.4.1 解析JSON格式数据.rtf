@@ -1,0 +1,59 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1561\cocoasubrtf400
+{\fonttbl\f0\fnil\fcharset134 PingFangSC-Regular;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\margl1440\margr1440\vieww22340\viewh13600\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 \
+[\{\'a1\'b0id\'a1\'b1:\'a1\'b15\'a1\'b1, \'a1\'b0version\'a1\'b1:\'a1\'b15.5\'a1\'b1, \'a1\'b0name\'a1\'b0:\'a1\'b1Clash of Clans\'a1\'b1\},\
+\{\'a1\'b0id\'a1\'b1:\'a1\'b16\'a1\'b1, \'a1\'b0version\'a1\'b1:\'a1\'b17.0\'a1\'b1, \'a1\'b0name\'a1\'b0:\'a1\'b1Boom Beach\'a1\'b1\},\
+\{\'a1\'b0id\'a1\'b1:\'a1\'b17\'a1\'b1, \'a1\'b0version\'a1\'b1:\'a1\'b13.5\'a1\'b1, \'a1\'b0name\'a1\'b0:\'a1\'b1Clash Royale\'a1\'b1\}]\
+\
+
+\b MainActivity.java:\
+\
+
+\b0 public class MainActivity extends AppCompatActivity implements View.OnClickListener \{\
+	\'a1\'ad\
+	private void sendRequestWithOkHttp() \{\
+		new Thread(new Runnable() \{\
+			@Override\
+			public void run() \{\
+				try \{\
+					OkHttpClient client = new OkHttpClient();\
+					Request request = new Request.Builder()\
+						.url(\'a1\'b0http://10.0.2.2/get_data.json\'a1\'b1)\
+						.build();\
+					Response response = client.newCall(request).execute();\
+					String responseData = response.body().string();\
+					
+\b parseJSONWithJSONObject(responseData);
+\b0 \
+				\} catch (Exception e) \{\
+					e.printStackTrace();\
+				\}\
+			\}\
+		\}).start();\
+	\}\
+	\'a1\'ad\
+
+\b 	private void parseJSONWithJSONObject(String jsonData) \{\
+		try \{\
+			JSONArray jsonArray = new JSONArray(jsonData);\
+			for (int i = 0; I < jsonArray.length(); I++) \{\
+				JSONObject jsonObject  = jsonArray.getJSONObject(i);\
+				String id = jsonObject.getString(\'a1\'b0id\'a1\'b1);\
+				String name = jsonObject.getString(\'a1\'b0name\'a1\'b1);\
+				String version = jsonObject.getString(\'a1\'b0version\'a1\'b1);\
+				Log.d(\'a1\'b0MainActivity\'a1\'b1, \'a1\'b0id is \'a1\'b1 + id);\
+				Log.d(\'a1\'b0MainActivity\'a1\'b1, \'a1\'b0name is \'a1\'b1 + name);\
+				Log.d(\'a1\'b0MainActivity\'a1\'b1, \'a1\'b0version is \'a1\'b1 + version);\
+			\}\
+		\} catch (Exception e) \{\
+			e.printStackTrace();\
+		\} \
+	\}
+\b0 \
+\}\
+}

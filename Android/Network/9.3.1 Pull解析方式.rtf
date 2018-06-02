@@ -1,0 +1,105 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1561\cocoasubrtf400
+{\fonttbl\f0\fnil\fcharset134 PingFangSC-Regular;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\margl1440\margr1440\vieww22340\viewh13600\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 \
+
+\b get_data.xml:
+\b0 \
+\
+<apps>\
+	<app>\
+		<id>1</id>\
+		<name>Google Maps</name>\
+		<version>1.0></version>\
+	</app>\
+	<app>\
+		<id>2</id>\
+		<name>Chrome</name>\
+		<version>2.1></version>\
+	</app>\
+	<app>\
+		<id>1</id>\
+		<name>Google Play</name>\
+		<version>2.3></version>\
+	</app>\
+<apps>\
+\
+
+\b MainActivity.java:\
+\
+
+\b0 public class MainActivity extends AppCompatActivity implements View.OnClickListener \{\
+	\'a1\'ad\
+\
+	private void sendRequestWithOkHttp() \{\
+		new Thread(new Runnable() \{\
+			@Override\
+			public void run() \{\
+				try \{\
+					OkHttpClient client = new OkHttpClient();\
+					Request request = new Request.Builder()\
+						.url(\'a1\'b0http://10.0.2.2/get_data.xml\'a1\'b1)\
+						.build();\
+					Response response = client.newCall(request).execute();\
+					String responseData = response.body().string();\
+					
+\b parseXMLWithPull(responseData);
+\b0 \
+				\} catch (Exception e) \{\
+					e.printStackTrace();\
+				\}\
+			\}\
+		\}).start();\
+	\}\
+\
+
+\b 	private void parseXMLWithPull(String xmlData) \{\
+		try \{\
+			XmlPullParserFactory factory = XmlPullParserFactory.newInstance();\
+			XmlPullParser xmlPullParser = factory.newPullParser();\
+			xmlPullParser.setInput(new StringReader(xmlData));\
+			int eventType = xmlPullParser.getEventType();\
+			String id = \'a1\'b0\'a1\'b1;\
+			String name = \'a1\'b0\'a1\'b1;\
+			String version = \'a1\'b0\'a1\'b1;\
+			while(eventType != XmlPullParser.END_DOCUMENT) \{\
+				String nodeName = xmlPullParser.getName();\
+				switch(eventType) \{\
+					// \'bf\'aa\'ca\'bc\'bd\'e2\'ce\'f6\'c4\'b3\'b8\'f6\'bd\'da\'b5\'e3\
+					case XmlPullParser.START_TAG: \{\
+						if (\'a1\'b0id\'a1\'b1.equals(nodeName)) \{\
+							id = xmlPullParser.nextText();\
+						\} else if (\'a1\'b0name\'a1\'b1.equals(nodeName)) \{\
+							name = xmlPullParser.nextText();\
+						\} else if (\'a1\'b0version\'a1\'b1.equals(nodeName)) \{\
+							version = xmlPullParser.nextText();\
+						\}\
+						break;\
+					\}\
+					// \'cd\'ea\'b3\'c9\'bd\'e2\'ce\'f6\'c4\'b3\'b8\'f6\'bd\'da\'b5\'e3\
+					case: XmlPullParser.END_TAG: \{\
+						if (\'a1\'b0app\'a1\'b1.equals(nodeName)) \{\
+							Log.d(\'a1\'b0MainActivity\'a1\'b1, \'a1\'b0id is \'a1\'b1 + id);\
+							Log.d(\'a1\'b0MainActivity\'a1\'b1, \'a1\'b0name is \'a1\'b1 + name);\
+							Log.d(\'a1\'b0MainActivity\'a1\'b1, \'a1\'b0version is \'a1\'b1 + version);\
+						\}\
+						break;\
+					\}\
+					default:\
+						break;\
+				\}\
+				eventType = xmlPullParser.next();\
+			\}\
+		\} catch (Exception e) \{\
+			e.printStackTrace();\
+		\}\
+\
+	\}
+\b0 \
+	\'a1\'ad\
+\}\
+}
