@@ -1,0 +1,104 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1561\cocoasubrtf400
+{\fonttbl\f0\fnil\fcharset134 PingFangSC-Regular;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\margl1440\margr1440\vieww21700\viewh13600\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 \
+
+\b activity_main.xml:
+\b0 \
+\
+<LinearLayout xlmns:android=\'a1\'b0http://schemas.android.com/apk/res/android\'a1\'b1\
+	android:orientation=\'a1\'b0vertical\'a1\'b1\
+	android:layout_width=\'a1\'b0match_parent\'a1\'b1\
+	android:layout_height=\'a1\'b0match_parent\'a1\'b1>\
+\
+	<Button\
+		android:id=\'a1\'b0@+id/start_service\'a1\'b1\
+		android:layout_width=\'a1\'b0match_parent\'a1\'b1\
+		android:layout_height=\'a1\'b0wrap_content\'a1\'b1\
+		android:text=\'a1\'b0Start Service\'a1\'b1 />\
+\
+	<Button\
+		android:id=\'a1\'b0@+id/stop_service\'a1\'b1\
+		android:layout_width=\'a1\'b0match_parent\'a1\'b1\
+		android:layout_height=\'a1\'b0wrap_content\'a1\'b1\
+		android:text=\'a1\'b0Stop Service\'a1\'b1 />\
+\
+</RelativeLayout>\
+\
+
+\b MainActivity.java:
+\b0 \
+\
+public class MainActivity extends AppCompatActivity implements View.OnClickListener \{\
+	\
+	@Override\
+	protected void onCreate(Bundle savedInstanceState) \{\
+		super.onCreate(savedInstanceState);\
+		setContentView(R.layout.activity_main);\
+		Button startService = (Button) findViewById(R.id.start_service);\
+		Button stopService = (Button) findViewById(R.id.stop_service);	\
+		startService.setOnClickListener(this);\
+		stopService.setOnClickListener(this);\
+	\}\
+\
+	@Override\
+	public void onClick(View v) \{\
+		switch(v.getId()) \{\
+			case R.id.start_service:\
+				Intent startIntent = new Intent(this, MyService.class);\
+				startService(intent); // \'c6\'f4\'b6\'af\'b7\'fe\'ce\'f1\
+				break;\
+			case R.id.stop_service:\
+				Intent stopIntent = new Intent(this, MyService.class);\
+				stopService(intent); // \'cd\'a3\'d6\'b9\'b7\'fe\'ce\'f1\
+				break;\
+			default:\
+				break;\
+		\}\
+	\}\
+\} \
+\
+\
+
+\b MyService.java:\
+\
+
+\b0 public class MyService extends Service \{\
+\
+	public MyService() \{\
+	\}\
+\
+	@Override\
+	public IBinder onBind(Intent intent) \{\
+		throw new UnsupportedOperationException(\'a1\'b0Not yet implemented\'a1\'b1);\
+	\}\
+\
+	@Override\
+	public void onCreate() \{\
+		super.onCreate();\
+		
+\b Log.d(\'a1\'b0MyService\'a1\'b1, \'a1\'b0onCreate executed\'a1\'b1);
+\b0 \
+	\}\
+\
+	@Override\
+	public int onStartCommand(Intent intent, int flags, int startId) \{\
+		
+\b Lod.d(\'a1\'b0MyService\'a1\'b1, \'a1\'b0onStartCommand executed\'a1\'b1);
+\b0 \
+		return super.onStartCommand(intent, flags, startId);\
+	\}\
+\
+	@Override\
+	public void onDestroy() \{\
+		super.onDestroy();\
+		
+\b Log.d(\'a1\'b0MyService\'a1\'b1, \'a1\'b0onDestroy executed\'a1\'b1);
+\b0 \
+	\}\
+\} \
+}

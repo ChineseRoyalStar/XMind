@@ -1,0 +1,60 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1561\cocoasubrtf400
+{\fonttbl\f0\fnil\fcharset134 PingFangSC-Regular;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\margl1440\margr1440\vieww21700\viewh13600\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 \
+
+\b MyService.java:\
+\
+
+\b0 public class MyService extends Service \{\
+\
+	public MyService() \{\
+	\}\
+\
+	@Override\
+	public IBinder onBind(Intent intent) \{\
+		throw new UnsupportedOperationException(\'a1\'b0Not yet implemented\'a1\'b1);\
+	\}\
+\
+	@Override\
+	public void onCreate() \{\
+		super.onCreate();\
+	\}\
+\
+	@Override\
+	public int onStartCommand(Intent intent, int flags, int startId) \{\
+		return super.onStartCommand(intent, flags, startId);\
+	\}\
+\
+	@Override\
+	public void onDestroy() \{\
+		super.onDestroy();\
+	\}\
+\} \
+\
+
+\b AndroidManifest.xml:
+\b0 \
+\
+<manifest xmlns:android=\'a1\'b0http://schemas.android.com/apk/res/android\'a1\'b1\
+	package=\'a1\'b0com.example.servicetest\'a1\'b1>\
+\
+	<application\
+		android:allowBackup=\'a1\'b0true\'a1\'b1\
+		android:icon=\'a1\'b0@mipmap/ic_launcher\'a1\'b1\
+		android:label=\'a1\'b0@string/app_theme\'a1\'b1\
+		android:supportsRtl=\'a1\'b0true\'a1\'b1\
+		android:theme=\'a1\'b0@style/AppTheme\'a1\'b1>\
+		\'a1\'ad\
+		<service\
+			android:name=\'a1\'b0.MyService\'a1\'b1\
+			android:enabled=\'a1\'b0true\'a1\'b1\
+			android:exported=\'a1\'b0true\'a1\'b1\
+		</service>\
+	</application>\
+\
+</manifest>}
