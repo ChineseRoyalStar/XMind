@@ -1,0 +1,92 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1561\cocoasubrtf400
+{\fonttbl\f0\fnil\fcharset134 PingFangSC-Regular;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\margl1440\margr1440\vieww21700\viewh13600\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 \
+
+\b activity_main.xml:
+\b0 \
+\
+
+\b <android.support.v4.widget.DrawerLayout \
+	xmlns:android=\'a1\'b0http://schemas.android.com/res/apk/android\'a1\'b1\
+	xml:app=\'a1\'b0http://schemas.android.com/apk/res-auto\'a1\'b1\
+	android:id=\'a1\'b0@+id/drawer_layout\'a1\'b1\
+	android:layout_width=\'a1\'b0match_parent\'a1\'b1\
+	android:layout_height=\'a1\'b0match_parent\'a1\'b1>
+\b0 \
+\
+	<FrameLayout\
+		android:layout_width=\'a1\'b0match_parent\'a1\'b1\
+		android:layout_height=\'a1\'b0match_parent\'a1\'b1>\
+\
+		<android.support.v7.widget.Toolbar\
+			android:id=\'a1\'b0@+id/toolbar\'a1\'b1\
+			android:layout_width=\'a1\'b0match_parent\'a1\'b1\
+			android:layout_height=\'a1\'b0?attr/actionBarSize\'a1\'b1\
+			android:backgroundColor=\'a1\'b0?attr/colorPrimary\'a1\'b1\
+			android:theme=\'a1\'b0@style/ThemeOverlay.AppCompat.Dark.ActionBar\'a1\'b1\
+			app:popupTheme=\'a1\'b0@style/ThemeOverlay.AppCompat.Light\'a1\'b1 />\
+\
+	<FrameLayout>\
+\
+
+\b 	<TextView\
+		android:layout_width=\'a1\'b0match_parent\'a1\'b1\
+		android:layout_height=\'a1\'b0match_parent\'a1\'b1\
+		android:layout_gravity=\'a1\'b0start\'a1\'b1\
+		android:text=\'a1\'b0This is menu\'a1\'b0\
+		android:textSize=\'a1\'b030sp\'a1\'b1\
+		android:background=\'a1\'b0#FFF\'a1\'b1 />
+\b0 \
+\
+
+\b </android.support.v4.widget.DrawerLayout>
+\b0 \
+\
+
+\b MainActivity.java:\
+\
+
+\b0 public class MainActivity extends AppCompatActivity \{\
+\
+	private DrawerLayout mDrawerLayout;\
+\
+	@Override\
+	protected void onCreate(Bundle savedInstanceState) \{\
+		super.onCreate(savedInstanceState);\
+		setContentView(R.layout.activity_main);\
+		Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);\
+		setSupportActionBar(toolbar);\
+
+\b 		mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);\
+		ActionBar actionBar = getSupportActionBar();\
+		if (actionBar != null) \{\
+			actionBar.setDisplayHomeAsUpEnabled(true);\
+			actionBar.setHomeAsUpIndicator(R.drawable.ic_menu);\
+		\}
+\b0 \
+	\}\
+\
+	\'a1\'ad\
+
+\b \
+
+\b0 	@Override\
+	public boolean onOptionsItemSelected(MenuItem item) \{\
+		switch(item.getItemId()) \{\
+
+\b 			case android.R.id.home:\
+				mDrawerLayout.openDrawer(GravityCompat.START);\
+				break;
+\b0 \
+			\'a1\'ad\
+			default:\
+		\}\
+		return true;\
+	\}\
+\} \
+}
