@@ -17,7 +17,9 @@
 	android:layout_width=\'a1\'b0match_parent\'a1\'b1\
 	android:layout_height=\'a1\'b0match_parent\'a1\'b1>\
 \
-	<FrameLayout\
+	<
+\b android.support.design.widget.CoordinatorLayout
+\b0 \
 		android:layout_width=\'a1\'b0match_parent\'a1\'b1\
 		android:layout_height=\'a1\'b0match_parent\'a1\'b1>\
 \
@@ -29,57 +31,19 @@
 			android:theme=\'a1\'b0@style/ThemeOverlay.AppCompat.Dark.ActionBar\'a1\'b1\
 			app:popupTheme=\'a1\'b0@style/ThemeOverlay.AppCompat.Light\'a1\'b1 />\
 \
-
-\b 		<android.support.design.widget.FloatingActionButton\
+		<android.support.design.widget.FloatingActionButton\
 			android:id=\'a1\'b0@+id/fab\'a1\'b1\
 			android:layout_width=\'a1\'b0wrap_content\'a1\'b1\
 			android:layout_height=\'a1\'b0wrap_content\'a1\'b1\
 			android:layout_gravity=\'a1\'b0bottom|end\'a1\'b1\
 			android:layout_margin=\'a1\'b016dp\'a1\'b1\
-			android:src=\'a1\'b0@drawable/ic_done\'a1\'b1 />
-\b0 \
+			android:src=\'a1\'b0@drawable/ic_done\'a1\'b1 />\
 \
-	</FrameLayout>\
+	<
+\b /android.support.design.widget.CoordinatorLayou
+\b0 t>\
 \
 	\'a1\'ad\
 \
 </android.support.v4.widget.DrawerLayout>\
-\
-\
-\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
-
-\b \cf0 \ul \ulc0 \'c9\'e8\'d6\'c3\'d0\'fc\'b8\'a1\'b8\'df\'b6\'c8:
-\b0 \ulnone \
-\
-<android.support.design.widget.FloatingActionButton\
-	\'a1\'ad\
-	
-\b app:elevation=\'a1\'b08dp\'a1\'b1
-\b0  />\
-\
-\
-
-\b MainActivity.java:\
-\
-
-\b0 public class MainActivity extends AppCompatActivity \{\
-\
-	private DrawerLayout mDrawerLayout;\
-\
-	@Override\
-	protected void onCreate(Bundle savedInstanceState) \{\
-		super.onCreate(savedInstanceState);\
-		setContentView(R.layout.activity_main);\
-		\'a1\'ad\
-
-\b 		FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);\
-		fab.setOnClickListener(new View.OnClickListener() \{\
-			@Override\
-			public void onClick(View view) \{\
-				Toast.makeText(MainActivity.this, \'a1\'b0FAB clicked\'a1\'b1, Toast.LENGTH_SHORT).show();\
-			\}\
-		\});
-\b0 \
-	\}\
-\} \
 }
