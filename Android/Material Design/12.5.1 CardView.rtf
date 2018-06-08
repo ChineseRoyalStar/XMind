@@ -1,0 +1,221 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1561\cocoasubrtf400
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;\f1\fnil\fcharset134 PingFangSC-Regular;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\margl1440\margr1440\vieww21700\viewh13600\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 \
+dependencies \{\
+	compile fileTree(dir: \'91libs\'92, include: [\'91*.jar\'92])\
+	compile \'91com.android.support.:appcompat-v7:24.2.1\'92\
+	testcompile \'91junit:junit:4.12\'92\
+	compile \'91com.android.support:design:24.2.1\'92\
+	compile \'91de.hdodenhof:circleimageview:2.1.0\'92\
+
+\b 	compile \'91com.android.support:recyclerview-v7:24.2.1\'92\
+	compile \'91com.android.support:cardview-v7:24.2.1\'92\
+	compile \'91com.github.bumptech.glide:glide:3.7.0\'92
+\b0 \
+\}\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f1 \cf0 \
+
+\b activity_main.xml:
+\b0 \
+\
+<android.support.v4.widget.DrawerLayout \
+	xmlns:android=\'a1\'b0http://schemas.android.com/res/apk/android\'a1\'b1\
+	xml:app=\'a1\'b0http://schemas.android.com/apk/res-auto\'a1\'b1\
+	android:id=\'a1\'b0@+id/drawer_layout\'a1\'b1\
+	android:layout_width=\'a1\'b0match_parent\'a1\'b1\
+	android:layout_height=\'a1\'b0match_parent\'a1\'b1>\
+\
+	<android.support.design.widget.CoordinatorLayout\
+		android:layout_width=\'a1\'b0match_parent\'a1\'b1\
+		android:layout_height=\'a1\'b0match_parent\'a1\'b1>\
+\
+		<android.support.v7.widget.Toolbar\
+			android:id=\'a1\'b0@+id/toolbar\'a1\'b1\
+			android:layout_width=\'a1\'b0match_parent\'a1\'b1\
+			android:layout_height=\'a1\'b0?attr/actionBarSize\'a1\'b1\
+			android:backgroundColor=\'a1\'b0?attr/colorPrimary\'a1\'b1\
+			android:theme=\'a1\'b0@style/ThemeOverlay.AppCompat.Dark.ActionBar\'a1\'b1\
+			app:popupTheme=\'a1\'b0@style/ThemeOverlay.AppCompat.Light\'a1\'b1 />\
+		\
+
+\b 		<android.support.v7.widget.RecyclerView\
+			android:id=\'a1\'b0@+id/recycler_view\'a1\'b1\
+			android:layout_width=\'a1\'b0match_parent\'a1\'b1\
+			android:layout_height=\'a1\'b0match_parent\'a1\'b1 />
+\b0 \
+\
+		<android.support.design.widget.FloatingActionButton\
+			android:id=\'a1\'b0@+id/fab\'a1\'b1\
+			android:layout_width=\'a1\'b0wrap_content\'a1\'b1\
+			android:layout_height=\'a1\'b0wrap_content\'a1\'b1\
+			android:layout_gravity=\'a1\'b0bottom|end\'a1\'b1\
+			android:layout_margin=\'a1\'b016dp\'a1\'b1\
+			android:src=\'a1\'b0@drawable/ic_done\'a1\'b1 />\
+\
+	</android.support.design.widget.CoordinatorLayout>\
+\
+	\'a1\'ad\
+\
+</android.support.v4.widget.DrawerLayout>\
+\
+\
+
+\b \'d0\'c2\'bd\'a8Fruit.java:
+\b0 \
+\
+public class Fruit \{\
+\
+	private String name;\
+\
+	private int imageId;\
+\
+	public Fruit(String name, int imageId) \{\
+		this.name = name;\
+		this.imageId = imageId;\
+	\}\
+\
+	public String getName() \{\
+		return name;\
+	\}\
+\
+	public int getImageId() \{\
+		return imageId;\
+	\}\
+\}\
+\
+\'d0\'c2\'bd\'a8fruit_item.xml:\
+\
+<android.support.v7.widget.CardView\
+	xmlns:android=\'a1\'b0http://schemas.android.com/apk/res/android\'a1\'b1\
+	xmlns:app=\'a1\'b0http://schemas.android.com/apk/res-auto\'a1\'b1\
+	android:layout_width=\'a1\'b0match_parent\'a1\'b1\
+	android:layout_height=\'a1\'b0wrap_content\'a1\'b1\
+	android:layout_margin=\'a1\'b05dp\'a1\'b1\
+	app:cardCornerRadius=\'a1\'b04dp\'a1\'b1>\
+\
+	<LinearLayout\
+		android:orientation=\'a1\'b0vertical\'a1\'b1\
+		android:layout_width=\'a1\'b0match_parent\'a1\'b1\
+		android:layout_height=\'a1\'b0wrap_content\'a1\'b1>\
+\
+		<ImageView\
+			android:id=\'a1\'b0@+id/fruit_image\'a1\'b1\
+			android:layout_width=\'a1\'b0match_parent\'a1\'b1\
+			android:layout_height=\'a1\'b0100dp\'a1\'b1\
+			android:scaleType=\'a1\'b0centerCrop\'a1\'b1 />\
+\
+		<TextView\
+			android:id=\'a1\'b0@+id/fruit_name\'a1\'b1\
+			android:layout_width=\'a1\'b0wrap_content\'a1\'b1\
+			android:layout_height=\'a1\'b0wrap_content\'a1\'b1\
+			android:layout_gravity=\'a1\'b0center_horizontal\'a1\'b1\
+			android:layout_margin=\'a1\'b05dp\'a1\'b1\
+			android:textSize=\'a1\'b016sp\'a1\'b1 />\
+\
+	</LinearLayout>\
+\
+</android.support.v7.widget.CardView>\
+\
+\
+
+\b FruitAdapter.java:\
+\
+
+\b0 public class FruitAdapter extends RecyclerView.Adapter<FruitAdapter.ViewHolder> \{\
+\
+	private Context mContext;\
+\
+	private List<Fruit> mFruitList;\
+\
+	static class ViewHolder extends RecyclerView.ViewHolder \{\
+		CardView cardView;\
+		ImageView fruitImage;\
+		TextView textView;\
+		\
+		public ViewHolder(View view) \{\
+			super(view);\
+			cardView = (CardView) view;\
+			fruitImage = (ImageView) view.findViewById(R.id.fruit_image);\
+			fruitName = (TextView) view.findViewById(R.id.fruit_name);\
+		\}\
+	\}\
+\
+	public FruitAdapter(List<Fruit> fruitList) \{\
+		mFruit = fruitList;\
+	\}\
+\
+	@Override\
+	public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) \{\
+		if (mContext == null) \{\
+			mContext = parent.getContext();\
+		\}\
+		View view = LayoutInflater.from(mContext).inflate(R.layout.fruit_item, parent, false);\
+		return new ViewHolder(view);\
+	\}\
+\
+	@Override\
+	public void onBindViewHolder(ViewHolder holder, int position) \{\
+		Fruit fruit = mFruitList.get(position);\
+		holder.fruitName.setText(fruit.getName());\
+		Glide.with(mContext).load(fruit.getImageId()).into(holder.fruitImage);\
+	\}\
+\
+	@Override\
+	public int getItemCount() \{\
+		return mFruitList.size();\
+	\}\
+\}\
+\
+
+\b MainActivity.java:\
+\
+
+\b0 public class MainActivity extends AppCompatActivity \{\
+\
+	private DrawerLayout mDrawerLayout;\
+\
+	private Fruit[] fruits = \{new Fruit(\'a1\'b0Apple\'a1\'b1, R.drawable.apple), new Fruit(\'a1\'b0Banana\'a1\'b1, R.drawable.banana),\
+		new Fruit(\'a1\'b0Orange\'a1\'b1, R.drawable.orange), new Fruit(\'a1\'b0Watermelon\'a1\'b1, R.drawable.watermelon),\
+		new Fruit(\'a1\'b0Pear\'a1\'b1, R.drawable.pear), new Fruit(\'a1\'b0Grape\'a1\'b1, R.drawable.grape),\
+		new Fruit(\'a1\'b0Pineapple\'a1\'b1, R.drawable.pineapple), new Fruit(\'a1\'b0Strawberry\'a1\'b1, R.drawable.strawberry),\
+		new Fruit(\'a1\'b0Cherry\'a1\'b1, R.drawable.cherry), new Fruit(\'a1\'b0Mango\'a1\'b1, R.drawable.mango)\};\
+\
+	private List<Fruit> fruitList = new ArrayList<>();\
+\
+	private FruitAdapter adapter;\
+\
+	@Override\
+	protected void onCreate(Bundle savedInstanceState) \{\
+		super.onCreate(savedInstanceState);\
+		setContentView(R.layout.activity_main);\
+		\'a1\'ad\
+
+\b 		initFruits();\
+		RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recycler_view);\
+		GridLayoutManager layoutManager = new GridLayoutManager(this, 2);\
+		recyclerView.setLayoutManager(layoutManager);\
+		adapter = new FruitAdapter(fruitList);\
+		recyclerView.setAdapter(adapter);
+\b0 \
+	\}\
+\
+
+\b 	private void initFruits() \{\
+		fruitList.clear();\
+		for (int i = 0; i < 50; i++) \{\
+			Random random = new Random();\
+			int index = random.nextInt(fruits.length);\
+			fruitList.add(fruits[index]);\
+		\}\
+	\}
+\b0 \
+\} \
+\
+}
