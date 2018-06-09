@@ -1,0 +1,88 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1561\cocoasubrtf400
+{\fonttbl\f0\fnil\fcharset134 PingFangSC-Regular;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\margl1440\margr1440\vieww21700\viewh13600\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 \
+
+\b app/build.gradle\'d6\'d0\'cc\'ed\'bc\'d3\'c8\'e7\'cf\'c2\'c5\'e4\'d6\'c3:\
+\
+
+\b0 android \{\
+	\'a1\'ad\
+	defaultConfig \{\
+		\'a1\'ad\
+		
+\b jackOptions.enabled = true
+\b0 \
+	\}\
+
+\b 	compileOptions \{\
+		sourceCompatibility JavaVersion.VERSION_1_8\
+		targetCompatibility JavaVersion.VERSION_1_8\
+	\}
+\b0 \
+	\'a1\'ad\
+\}\
+ \
+\
+
+\b /**  \'d3\'c3\'b7\'a81 */
+\b0 \
+\
+new Thread(new Runnable() \{\
+	@Override\
+	public void run() \{\
+		// \'b4\'a6\'c0\'ed\'be\'df\'cc\'e5\'b5\'c4\'c2\'df\'bc\'ad\
+	\}\
+\}).start();\
+\
+\'b6\'f8\'ca\'b9\'d3\'c3Lambda\'b1\'ed\'b4\'ef\'ca\'bd\'bf\'c9\'d2\'d4\'d5\'e2\'d1\'f9\'d0\'b4:\
+\
+new Thread(() -> \{\
+	// \'b4\'a6\'c0\'ed\'be\'df\'cc\'e5\'c2\'df\'bc\'ad\
+\}).start();\
+\
+
+\b /** \'d3\'c3\'b7\'a82 : \'bd\'d3\'bf\'da*/\
+\
+public interface MyListener \{\
+	String doSomething(String a, int b);\
+\}\
+\
+\'b4\'b4\'bd\'a8\'c4\'e4\'c3\'fb\'ca\'b5\'cf\'d6\
+\
+MyListener listener = (String a, int b) -> \{\
+	String result = a + b;\
+	return result;\
+\}
+\b0 \
+\
+
+\b /** \'d3\'c3\'b7\'a83 : \'c9\'e8\'d6\'c3\'b5\'e3\'bb\'f7\'ca\'c2\'bc\'fe*/\
+\
+
+\b0 Button button = (Button) findViewById(R.id.button);\
+button.setOnClickListener(new View.OnClickListener() \{\
+	@Override\
+	public void onClick(View v) \{\
+		// \'b4\'a6\'c0\'ed\'b5\'e3\'bb\'f7\'ca\'c2\'bc\'fe\
+	\}\
+\});\
+\
+\'bf\'c9\'bc\'f2\'bb\'af\'ce\'aa:\
+Button button = (Button) findViewById(R.id.button);\
+button.setOnClickListener((v) -> \{\
+	// \'b4\'a6\'c0\'ed\'b5\'e3\'bb\'f7\'ca\'c2\'bc\'fe\
+\});\
+\
+\'bb\'f2\'d5\'df:\
+\
+Button button = (Button) findViewById(R.id.button);\
+button.setOnClickListener(`v -> \{\
+	// \'b4\'a6\'c0\'ed\'b5\'e3\'bb\'f7\'ca\'c2\'bc\'fe\
+\});\
+\
+}
